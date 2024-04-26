@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { BrandInterface } from "~/types/productDetail";
+import type { BrandInterface } from '~/types/productDetail'
 
 interface PropsInterface {
-  brand: BrandInterface;
-  code: string;
-  annotation: string;
+  brand: BrandInterface
+  code: string
+  annotation: string
 }
 
-defineProps<PropsInterface>();
+defineProps<PropsInterface>()
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 </script>
 
 <template>
@@ -22,7 +22,8 @@ const config = useRuntimeConfig();
         height="40"
         alt=""
         quality="20"
-        :src="config.public.API_BASE_URL + brand.imagePath" />
+        :src="config.public.API_BASE_URL + brand.imagePath"
+      />
       <span>{{ brand.name }}</span>
     </div>
     <p class="text-[#666666] text-sm">

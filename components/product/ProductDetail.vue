@@ -1,38 +1,38 @@
 <script setup lang="ts">
-import { URLS } from "~/Urls";
-import type { ProductDetailResponseInterface } from "~/types/productDetail";
+import { URLS } from '~/Urls'
+import type { ProductDetailResponseInterface } from '~/types/productDetail'
 
-const route = useRoute();
-const config = useRuntimeConfig();
+const route = useRoute()
+const config = useRuntimeConfig()
 
 const { data, error } = await useHttpServer<ProductDetailResponseInterface>(
   URLS.api.productDetail(route.params.productId as string),
-  config.public.API_X_PB_SCOPE_PRODUCT
-);
+  config.public.API_X_PB_SCOPE_PRODUCT,
+)
 
-const content = data.value?.responseContent ?? null;
-const networkError = error.value;
-const apiError = data.value?.errors ?? null;
+const content = data.value?.responseContent ?? null
+const networkError = error.value
+const apiError = data.value?.errors ?? null
 
 if (content === null || networkError !== null || apiError !== null) {
-  throw new Error();
+  throw new Error()
 }
 
-const accessoryListElement = ref<HTMLElement | null>(null);
-const showAccessories = ref(false);
+const accessoryListElement = ref<HTMLElement | null>(null)
+const showAccessories = ref(false)
 
 onMounted(() => {
   // Delay loading of accessories to the point it appears in viewport
   const intersectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        showAccessories.value = true;
+        showAccessories.value = true
       }
-    });
-  });
+    })
+  })
 
-  intersectionObserver.observe(accessoryListElement.value as HTMLElement);
-});
+  intersectionObserver.observe(accessoryListElement.value as HTMLElement)
+})
 </script>
 
 <template>
@@ -50,23 +50,28 @@ onMounted(() => {
         <ProductBadge
           v-for="badge in content.badges.items"
           :key="badge.name"
-          :badge="badge" />
+          :badge="badge"
+        />
       </mark>
       <ProductDescription
         :brand="content.brand"
         :code="content.code"
-        :annotation="content.annotation" />
+        :annotation="content.annotation"
+      />
       <ProductPrice
         :price="content.price"
-        :stock-availabilitiy="content.stockAvailability" />
+        :stock-availabilitiy="content.stockAvailability"
+      />
     </section>
   </article>
   <aside
     v-if="content.isWithAccessories"
     ref="accessoryListElement"
-    class="mt-16">
+    class="mt-16"
+  >
     <AccessoryList
       v-if="showAccessories"
-      :product-id="route.params.productId as string" />
+      :product-id="route.params.productId as string"
+    />
   </aside>
 </template>

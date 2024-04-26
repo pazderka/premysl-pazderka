@@ -1,13 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ["@/assets/scss/main.scss"],
+  css: ['@/assets/scss/main.scss'],
   modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/google-fonts",
-    "@nuxt/image",
-    "@nuxt/eslint",
-    "@nuxtjs/seo",
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
+    '@nuxt/eslint',
+    '@nuxtjs/seo',
   ],
   runtimeConfig: {
     public: {
@@ -18,11 +18,11 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      "DM Sans": true,
+      'DM Sans': true,
     },
   },
   image: {
-    domains: ["https://frontapi.praguebest.cz"],
+    domains: ['https://frontapi.praguebest.cz'],
   },
   eslint: {
     config: {
@@ -30,9 +30,9 @@ export default defineNuxtConfig({
     },
   },
   site: {
-    url: "https://localhost:3000",
-    name: "E-commerce appliction",
-    description: "My awesome e-commerce application",
-    defaultLocale: "cs",
+    url: 'https://localhost:3000',
+    name: 'E-commerce appliction',
+    description: 'My awesome e-commerce application',
+    defaultLocale: 'cs',
   },
-});
+})
